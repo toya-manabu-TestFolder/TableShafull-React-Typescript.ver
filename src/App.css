@@ -1,38 +1,666 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: bold;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* 背景 */
+body {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(./images/bg.jpg);
+  background-size: cover;
+  background-position: 0 60%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* シャッフルボタンの切り替え用 */
+.displayNone {
+  display: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* 座席表 */
+#secbox {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100vh;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+#sec1 {
+  width: 75vw;
+  height: 95vh;
+  position: relative;
+  opacity: 1;
+}
+#front {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  top: -1%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72%;
+  border-bottom: 0.2rem solid #000;
+  font-size: 1.5rem;
+  color: #000;
+}
+#exit {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  bottom: -1%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72%;
+  border-top: 0.2rem solid #000;
+  font-size: 1.5rem;
+  color: #000;
+}
+/* JSテーブル作成 */
+table span {
+  font-size: 1.4rem;
+  color: #000;
+}
+#table1 {
+  position: absolute;
+  top: 9%;
+  left: 13%;
+  border-radius: 2%;
+  width: 35%;
+  height: 40%;
+  border-spacing: 0.5em;
 }
 
-.App-link {
-  color: #61dafb;
+#table2 {
+  position: absolute;
+  top: 9%;
+  right: 13%;
+  width: 35%;
+  height: 40%;
+  border-spacing: 0.5em;
+}
+#table3 {
+  position: absolute;
+  bottom: 8%;
+  left: 13%;
+  width: 35%;
+  height: 40%;
+  border-spacing: 0.5em;
+}
+#table4 {
+  position: absolute;
+  bottom: 10%;
+  right: 13%;
+  width: 35%;
+  height: 40%;
+  border-spacing: 0.5em;
+}
+td {
+  border: 3px solid;
+  width: 50%;
+  height: 50%;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* テーブルアニメーション1 */
+.tableAnimetion1 {
+  animation: tablwAnimation1 1s ease-in;
+}
+
+@keyframes tablwAnimation1 {
+  0% {
+    opacity: 0;
   }
-  to {
-    transform: rotate(360deg);
+}
+/* チェンジ変更用クラス */
+.chanageAnimetion {
+  opacity: 1;
+}
+/* テーブルアニメーション2 */
+.tableAnimetion2 {
+  animation: tablwAnimation2 1s ease-in;
+}
+
+@keyframes tablwAnimation2 {
+  0% {
+    opacity: 0;
+  }
+}
+
+/* 雪だるま */
+#snowManBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+}
+#StartBtn {
+  position: absolute;
+  top: 25%;
+  right: 19%;
+  font-size: 1.4rem;
+  width: 60%;
+  height: 40%;
+  transform: rotate(10deg);
+  border: none;
+  background-color: green;
+  color: white;
+  border-radius: 25%;
+  z-index: 2;
+}
+#ResetBtn {
+  position: absolute;
+  top: 25%;
+  right: 19%;
+  font-size: 1.4rem;
+  width: 60%;
+  height: 40%;
+  transform: rotate(10deg);
+  border: none;
+  background-color: green;
+  color: white;
+  border-radius: 25%;
+  z-index: 1;
+}
+.snowbody {
+  width: 16%;
+  height: 32%;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  bottom: -4%;
+  right: 5%;
+  animation: slideSnow 2s ease-out, jamp 4s infinite;
+}
+.leftHand {
+  width: 31%;
+  height: 7%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 55%;
+  left: 0%;
+  transform: rotate(60deg);
+  z-index: 2;
+}
+.leftFinger1 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 37%;
+  left: 12%;
+  transform: rotate(100deg);
+  z-index: 2;
+}
+.leftFinger2 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 37%;
+  left: 18%;
+  transform: rotate(60deg);
+  z-index: 2;
+}
+.leftFinger3 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 42%;
+  left: 22%;
+  transform: rotate(30deg);
+  z-index: 2;
+}
+.rightHand {
+  width: 31%;
+  height: 7%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 45%;
+  right: 0%;
+  transform: rotate(-50deg);
+  z-index: 2;
+}
+.rightFinger1 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 30%;
+  right: 15%;
+  transform: rotate(-100deg);
+  z-index: 2;
+}
+.rightFinger2 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 31%;
+  right: 21%;
+  transform: rotate(-50deg);
+  z-index: 2;
+}
+.rightFinger3 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 36%;
+  right: 25%;
+  transform: rotate(-5deg);
+  z-index: 2;
+}
+.snowHead {
+  width: 12%;
+  height: 24%;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid #000;
+  position: absolute;
+  bottom: 23%;
+  right: 5%;
+  animation: slideSnow 2s ease-out, jamp 4s infinite;
+}
+.hatBrim {
+  width: 70%;
+  height: 10%;
+  background-color: #000;
+  position: absolute;
+  top: 5%;
+  right: -5%;
+  transform: rotate(25deg);
+}
+.hatRibon {
+  width: 50%;
+  height: 10%;
+  background-color: red;
+  position: absolute;
+  top: -4%;
+  right: 1%;
+  transform: rotate(25deg);
+}
+.hatHead {
+  width: 50%;
+  height: 40%;
+  background-color: #000;
+  position: absolute;
+  top: -25%;
+  right: -2%;
+  transform: rotate(25deg);
+}
+.snowEyeLeft {
+  width: 8%;
+  height: 8%;
+  border-radius: 50%;
+  background-color: #000;
+  position: absolute;
+  bottom: 60%;
+  right: 60%;
+}
+.snowEyeRight {
+  width: 8%;
+  height: 8%;
+  border-radius: 50%;
+  background-color: #000;
+  position: absolute;
+  bottom: 55%;
+  right: 25%;
+}
+.snowEyeBrowLeft {
+  width: 20%;
+  height: 5%;
+  border: 50%;
+  background-color: #000;
+  position: absolute;
+  bottom: 66.5%;
+  right: 54%;
+  transform: rotate(9deg);
+}
+.snowEyeBrowRight {
+  width: 20%;
+  height: 5%;
+  border: 50%;
+  background-color: #000;
+  position: absolute;
+  bottom: 61%;
+  right: 18%;
+  transform: rotate(10deg);
+}
+.snowNose {
+  width: 13%;
+  height: 13%;
+  background-color: rgb(244, 72, 9);
+  position: absolute;
+  bottom: 43%;
+  right: 40%;
+  border-radius: 50%;
+}
+.snowMouth {
+  width: 35%;
+  height: 6%;
+  background-color: #000;
+  position: absolute;
+  bottom: 30%;
+  right: 32%;
+  transform: rotate(10deg);
+}
+/* 特大雪だるま */
+.BigSbowmanDisplay {
+  display: none;
+}
+#BigSnowManBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+}
+.BigSnowbody {
+  width: 43%;
+  height: 85%;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  bottom: -30%;
+  right: 120%;
+  animation: JanmpBigSnowBody 2s linear;
+  z-index: 1;
+}
+.BigleftHand {
+  width: 45%;
+  height: 7%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 100%;
+  left: -15%;
+  transform: rotate(60deg);
+}
+.BigleftFinger1 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 128%;
+  left: -8%;
+  transform: rotate(100deg);
+}
+.BigleftFinger2 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 128%;
+  left: -15%;
+  transform: rotate(60deg);
+}
+.BigleftFinger3 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 122%;
+  left: -18%;
+  transform: rotate(16deg);
+}
+.BigrightHand {
+  width: 40%;
+  height: 7%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 65%;
+  right: -32%;
+  transform: rotate(-10deg);
+}
+.BigrightFinger1 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 77%;
+  right: -40%;
+  transform: rotate(-65deg);
+}
+.BigrightFinger2 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 71%;
+  right: -45%;
+  transform: rotate(-12deg);
+}
+.BigrightFinger3 {
+  width: 15%;
+  height: 4%;
+  border-radius: 20%;
+  background-color: rgb(107, 20, 20);
+  position: absolute;
+  bottom: 65%;
+  right: -43%;
+  transform: rotate(28deg);
+}
+.BigSnowHead {
+  width: 30%;
+  height: 60%;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid #000;
+  position: absolute;
+  bottom: 39%;
+  right: 120%;
+  animation: JanmpBigSnowHead 2s linear;
+  z-index: 2;
+}
+.BigsnowEyeLeft {
+  width: 8%;
+  height: 8%;
+  border-radius: 50%;
+  background-color: #000;
+  position: absolute;
+  bottom: 60%;
+  right: 60%;
+}
+.BigsnowEyeRight {
+  width: 8%;
+  height: 8%;
+  border-radius: 50%;
+  background-color: #000;
+  position: absolute;
+  bottom: 55%;
+  right: 25%;
+}
+.BigsnowEyeBrowLeft {
+  width: 25%;
+  height: 5%;
+  background-color: #000;
+  position: absolute;
+  bottom: 74.5%;
+  right: 48%;
+  transform: rotate(43deg);
+}
+.BigsnowEyeBrowRight {
+  width: 25%;
+  height: 5%;
+  background-color: #000;
+  position: absolute;
+  bottom: 66%;
+  right: 14%;
+  transform: rotate(-11deg);
+}
+.BigsnowNose {
+  width: 13%;
+  height: 13%;
+  background-color: rgb(244, 72, 9);
+  position: absolute;
+  bottom: 43%;
+  right: 40%;
+  border-radius: 50%;
+}
+.BigsnowMouth1 {
+  width: 25%;
+  height: 6%;
+  background-color: #000;
+  position: absolute;
+  bottom: 29%;
+  right: 47%;
+  transform: rotate(38deg);
+}
+.BigsnowMouth2 {
+  width: 25%;
+  height: 6%;
+  background-color: #000;
+  position: absolute;
+  bottom: 27.5%;
+  right: 29%;
+  transform: rotate(-28deg);
+}
+
+@keyframes JanmpBigSnowHead {
+  0% {
+    right: -60%;
+    bottom: 100%;
+  }
+  45% {
+    bottom: 30%;
+  }
+  46% {
+    transform: scale(1, 1) translate(0%, 0%);
+  }
+  49% {
+    transform: scale(0.9, 0.9) translate(0%, 5%);
+  }
+  54% {
+    transform: scale(1.3, 0.8) translate(0%, 10%);
+  }
+  59% {
+    transform: scale(0.8, 1.3) translate(0%, -10%);
+  }
+  64% {
+    transform: scale(1.1, 0.9) translate(0%, 5%);
+  }
+  69% {
+    transform: scale(1, 1) translate(0%, 0%);
+  }
+  100% {
+    bottom: 160%;
+  }
+}
+@keyframes JanmpBigSnowBody {
+  0% {
+    right: -60%;
+    bottom: 40%;
+  }
+  45% {
+    bottom: -25%;
+  }
+  46% {
+    transform: scale(1, 1) translate(0%, 0%);
+  }
+  49% {
+    transform: scale(0.9, 0.9) translate(0%, 5%);
+  }
+  54% {
+    transform: scale(1.3, 0.8) translate(0%, 10%);
+  }
+  59% {
+    transform: scale(0.8, 1.3) translate(0%, -10%);
+  }
+  64% {
+    transform: scale(1.1, 0.9) translate(0%, 5%);
+  }
+  69% {
+    transform: scale(1, 1) translate(0%, 0%);
+  }
+  100% {
+    bottom: 90%;
+  }
+}
+
+/* 雪用クラス */
+.snow {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #fff;
+  animation: snowFall 10s linear;
+}
+
+@keyframes snowFall {
+  0% {
+    opacity: 0;
+    top: 0;
+    transform: translateX(5px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-5px);
+  }
+  30% {
+    transform: translateX(5px);
+  }
+  40% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    top: 100vh;
+  }
+}
+
+/* 雪だるま + jampアニメーション*/
+@keyframes slideSnow {
+  0% {
+    right: -20%;
+  }
+}
+
+@keyframes jamp {
+  0% {
+  }
+  3% {
+    transform: translate(0, -50px);
+  }
+  5% {
+    transform: translate(0, 0px);
+  }
+  6% {
+    transform: translate(0, -25px);
+  }
+  7% {
+    transform: translate(0, -5px);
+  }
+  100% {
+    transform: translate(0, 0px);
   }
 }
